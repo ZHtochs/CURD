@@ -1,15 +1,10 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import bean.Hero;
+
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import bean.Hero;
 
 public class HeroDAO {
 
@@ -22,11 +17,11 @@ public class HeroDAO {
     }
 
     public Connection getConnection() throws SQLException {
-         Connection c=DriverManager.getConnection(
-                "jdbc:mysql://127.0.0.1:3306/how2java?serverTimezone=UTC&amp;characterEncoding=UTF-8",
+        Connection c = DriverManager.getConnection(
+                "jdbc:mysql://127.0.0.1:3306/how2java?characterEncoding=UTF-8",
                 "root", "admin");
 
-         return  c;
+        return c;
     }
 
     public int getTotal() {
@@ -49,8 +44,8 @@ public class HeroDAO {
     public void add(Hero hero) {
 
         String sql = "insert into hero values(null,?,?,?)";
-        try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(sql);) {
-
+        try (Connection c = getConnection(); ) {
+            PreparedStatement ps = c.prepareStatement(sql);
             ps.setString(1, hero.name);
             ps.setFloat(2, hero.hp);
             ps.setInt(3, hero.damage);
@@ -62,6 +57,7 @@ public class HeroDAO {
                 int id = rs.getInt(1);
                 hero.id = id;
             }
+            ps.close();
         } catch (SQLException e) {
 
             e.printStackTrace();

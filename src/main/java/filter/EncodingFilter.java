@@ -1,27 +1,30 @@
 package filter;
 
 import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter(filterName = "EncodingFilter")
 public class EncodingFilter implements Filter {
+
+    @Override
     public void destroy() {
+
     }
 
-    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
-            throws ServletException, IOException {
+    @Override
+    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
+            throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) req;
-        HttpServletResponse response = (HttpServletResponse) resp;
+        HttpServletResponse response = (HttpServletResponse) res;
 
         request.setCharacterEncoding("UTF-8");
 
         chain.doFilter(request, response);
     }
 
-    public void init(FilterConfig config) throws ServletException {
+    @Override
+    public void init(FilterConfig arg0) throws ServletException {
 
     }
 

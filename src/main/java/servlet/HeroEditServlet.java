@@ -17,6 +17,7 @@ public class HeroEditServlet extends HttpServlet {
 
         int id = Integer.parseInt(request.getParameter("id"));
         Hero hero = new HeroDAO().get(id);
+        response.setContentType("text/html; charset=UTF-8");
         request.setAttribute("hero", hero);
         request.getRequestDispatcher("editHero.jsp").forward(request, response);
 

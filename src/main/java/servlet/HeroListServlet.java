@@ -23,7 +23,7 @@ public class HeroListServlet extends HttpServlet {
 //            return;
 //        }
         int start = 0;
-        int count = 5;
+        int count = 10;
         List<Hero> heroes = new HeroDAO().list(start, count);
         try {
             start = Integer.parseInt(request.getParameter("start"));
