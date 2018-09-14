@@ -49,7 +49,7 @@
         <li><a href="?start=${last}">末 页</a></li>
     </ul>
 </nav>
-
+<button ><a href="addHero.html">添加英雄</a></button>
 当前 在线人数 ： ${online_number}
 </body>
 </html>
