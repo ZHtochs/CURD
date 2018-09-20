@@ -17,26 +17,20 @@ public class HeroController {
     //添加
     @RequestMapping(value = "/addHero")
     public String login(Hero hero) {
-        System.out.println(hero);
         heroRepository.save(hero);
         return "redirect:listHero";
     }
 
     //列表
     @GetMapping(value = "/listHero")
-    public String listHero(Model model, @PageableDefault(size = 100) Pageable pageable) {
-        model.addAttribute("listHero", heroRepository.findAll(pageable));
+    public String listHero(Model model) {
+        model.addAttribute("listHero", heroRepository.findAll());
         return null;
     }
 
     //更新
     @RequestMapping(value = "/updateHero")
     public String updateHero(@RequestParam("id") int id, Hero hero) {
-//        heroRepository.delete(id);
-        System.out.println(id);
-        System.out.println(hero.toString());
-//        hero.setId(id);
-        System.out.println(hero.toString());
         heroRepository.save(hero);
 
         return "updateHero";
