@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  xmlns:th="http://www.thymeleaf.org">
+ <head lang="en">
+  <meta charset="UTF-8"></meta>
+  <title>Title</title>
+</head>
+<body>
+  <table class="table" style="width: 400px;">
+        <thead>
+            <tr>
+             <th>序号</th>
+              <th>名字</th>
+                <th>血量</th>
+                <th>伤害</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="hero: ${listHero}">
+                <td th:text="${hero.id}"></td>
+                <td th:text="${hero.name}"></td>
+                <td th:text="${hero.hp}"></td>
+                <td th:text="${hero.damage}"></td>
+                 <td><a th:href="@{/updateHero(id=${hero.id})}">编辑</a></td>
+                 <td><a th:href="@{/deleteHero(id=${hero.id})}">删除</a></td>
+            </tr>
+        </tbody>
+      </table>
+       <a type="button" href="addHero.html">添加</a>
+       <form action="/addHero" method="post">
+           <p>姓名：<input type="text" name="name"/>
+           </p>
+           <p>hp：<input type="password" name="hp"/>
+           </p>
+           <p>damage：<input type="password" name="damage"/>
+               </p>
+           <p><button><a>提交</a></button>
+           </p>
+       </form>
+</body>
+</html>
